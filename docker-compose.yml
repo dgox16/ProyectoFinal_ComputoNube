@@ -2,20 +2,20 @@ version: '3'
 
 services:
   proyecto: 
-      container_name: paginaProyecto
-      restart: always
-      build: .
+      container_name: paginaProyecto  # Nombre de contenedor
+      restart: always # Se va a reiniciar automaticamente
+      build: .  # Se va a construir la carpeta actual
       ports:
-        - "4000:3000"
+        - "4000:3000"   # La pagina se inicia en el puerto 3000 pero el contenedor sera en el 4000
       links:
-        - mongo
+        - mongo # Se crea un link con el otro contenedor de base de datos
       volumes:
-        - .:/usr/src/app
+        - .:/usr/src/app # Se crea un volumen donde estaran todos los datos
       
   mongo:
-      container_name: DBProyecto
-      image: mongo
+      container_name: DBProyecto # Nombre del contenedor de mongo
+      image: mongo # Se usara la imagen descargada de mongo
       ports:
-        - "27018:27017"
+        - "27018:27017"  # Se indica en que puerto va a correr
       logging:
         driver: none
