@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  proyecto: 
+      container_name: paginaProyecto
+      restart: always
+      build: .
+      ports:
+        - "4000:3000"
+      links:
+        - mongo
+      volumes:
+        - .:/usr/src/app
+      
+  mongo:
+      container_name: DBProyecto
+      image: mongo
+      ports:
+        - "27018:27017"
+      logging:
+        driver: none
