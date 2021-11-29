@@ -1,9 +1,15 @@
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const methodOverride = require('method-override');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+
 
 //Inicializacion
 const app = express();
+
 
 // Ajustes
 app.set('puerto', process.env.PORT || 3000); // Se define el puerto a usar
@@ -22,9 +28,29 @@ app.set('view engine', '.hbs'); // Se indica que se usara hbs
 
 // Middlewars
 app.use(express.urlencoded({extended : false}));
+app.use(methodOverride('__method'));
+app.use(session({
+    secret: 'secreto',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash())
+
+
+// Global Variables
+app.use((req, res, next) => {
+    res.locals.mensajeExito = req.flash('mensajeExito');
+    res.locals.mensajeError = req.flash('mensajeError');
+    res.locals.error = req.flash('error');
+    res.locals.usuario = req.usuario || null;
+    next();
+});
 
 // Rutas 
 app.use(require('./rutas/index.ruta')); // Las rutas se manejaran en archivos a parte
+app.use(require('./rutas/usuario.ruta'));
 
 
 module.exports = app
