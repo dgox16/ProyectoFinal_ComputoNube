@@ -42,5 +42,11 @@ usuarioCtrl.renderFormInicio = (req, res) => {
     res.render('usuarios/iniciar');
 }
 
+usuarioCtrl.iniciaSesion = passport.authenticate('local', {
+    failureRedirect : '/usuarios/registro',
+    successRedirect : '/inicio',
+    failureFlash : true
+});
+
 
 module.exports = usuarioCtrl;

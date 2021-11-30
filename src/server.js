@@ -9,7 +9,7 @@ const passport = require('passport');
 
 //Inicializacion
 const app = express();
-
+require('./configuraciones/passport');
 
 // Ajustes
 app.set('puerto', process.env.PORT || 3000); // Se define el puerto a usar
