@@ -6,7 +6,6 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 
-
 //Inicializacion
 const app = express();
 require('./configuraciones/passport');
@@ -24,6 +23,7 @@ app.engine('.hbs', exphbs.engine({ // Se configura hbs que se usara como un html
         allowProtoMethodsByDefault: true,
     }
 }));
+
 app.set('view engine', '.hbs'); // Se indica que se usara hbs
 
 // Middlewars
@@ -52,5 +52,7 @@ app.use((req, res, next) => {
 app.use(require('./rutas/index.ruta')); // Las rutas se manejaran en archivos a parte
 app.use(require('./rutas/usuario.ruta'));
 
+// CSS e IMAGENES
+app.use(express.static(path.join(__dirname, "public")));   
 
 module.exports = app

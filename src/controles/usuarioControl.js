@@ -7,6 +7,7 @@ usuarioCtrl.renderFormRegistro = (req, res) => {
     res.render('usuarios/registro')
 };
 
+
 usuarioCtrl.registro = async (req, res) => {
     const errores = [];
     const { nombre, usuario, contraseña, confirmarContraseña } = req.body;
@@ -47,6 +48,13 @@ usuarioCtrl.iniciaSesion = passport.authenticate('local', {
     successRedirect : '/inicio',
     failureFlash : true
 });
+
+//SECCION CERRAR SESION
+usuarioCtrl.cerrarSesion = (req, res) => {
+    req.logout();
+    req.flash('mensajeExito', 'Has cerrado sesión');
+    req.redirect('/usuarios/iniciar');
+}
 
 
 module.exports = usuarioCtrl;
