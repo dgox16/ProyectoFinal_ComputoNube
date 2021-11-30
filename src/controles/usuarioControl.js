@@ -16,7 +16,6 @@ usuarioCtrl.registro = async (req, res) => {
     if (contraseña.length < 4) {
         errores.push({text: 'La contraseña debe tener al menos 4 caracteres'});
     };
-
     if (errores.length > 0) {
         res.render('usuarios/registro', {
             errores,
@@ -37,5 +36,11 @@ usuarioCtrl.registro = async (req, res) => {
         }
     }
 }
+
+//SECCION INICIO SESION
+usuarioCtrl.renderFormInicio = (req, res) => {
+    res.render('usuarios/iniciar');
+}
+
 
 module.exports = usuarioCtrl;
