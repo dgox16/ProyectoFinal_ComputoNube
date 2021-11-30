@@ -12,3 +12,36 @@ body {
     color: #eceff4;
     background-color: #2e3440;
 }
+
+.card {
+    color : #eceff4;
+    background-color: #3b4252;
+}
+
+.btn-success {
+    background-color: #81a1c1;
+    border-color: #81a1c1;
+    color: #2e3440;
+}
+.btn-success:hover {
+    background-color: #88c0d0;
+    border-color: #88c0d0;
+    color: #2e3440;
+}
+
+.btn-success:focus {
+    background-color: #81a1c1;
+    border-color: #81a1c1;
+    color: #2e3440;
+}
+
+.form-control {
+    background-color: #d8dee9;
+    color: #4c566a;
+    border: #d8dee9;
+}
+.form-control:focus {
+    background-color: #d8dee9;
+    color: #4c566a;
+    border: #d8dee9;
+}
