@@ -8,7 +8,7 @@ const passport = require('passport');
 const morgan = require('morgan');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
-const { dirname } = require('path');
+const { format } = require('timeago.js');
 
 //Inicializacion
 const app = express();
@@ -57,8 +57,10 @@ app.use((req, res, next) => {
     res.locals.mensajeError = req.flash('mensajeError');
     res.locals.error = req.flash('error');
     res.locals.usuario = req.usuario || null;
+    res.locals.format = format;
     next();
 });
+
 
 // Rutas 
 app.use(require('./rutas/index.ruta')); // Las rutas se manejaran en archivos a parte

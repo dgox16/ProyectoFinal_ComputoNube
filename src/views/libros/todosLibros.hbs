@@ -1,0 +1,13 @@
+<div class="row">
+    {{#each libros}}
+    <div class="col-md-4">
+        <div class="card">
+            <img src={{path}} class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ titulo }}</h5>
+                <p class="card-text">{{ descripcion }}</p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

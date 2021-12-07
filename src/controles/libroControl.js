@@ -17,7 +17,12 @@ libroCtrl.agregarLibro = async (req, res) => {
         size
     });
     await libro.save();
-    res.redirect('/');
+    res.redirect('/libro');
+}
+
+libroCtrl.listaLibros = async (req, res) => {
+    const libros = await Libro.find();
+    res.render('libros/todosLibros', { libros });
 }
 
 module.exports = libroCtrl;
