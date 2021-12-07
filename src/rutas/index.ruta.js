@@ -6,4 +6,5 @@ const { renderIndex, renderAcerca } = require('../controles/indexControl') // Se
 router.get('/', renderIndex);
 
 router.get('/acerca', renderAcerca);
+
 module.exports = router;

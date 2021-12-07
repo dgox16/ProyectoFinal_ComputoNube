@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const morgan = require('morgan');
 const multer = require('multer');
+const { dirname } = require('path');
 
 //Inicializacion
 const app = express();
@@ -40,6 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash())
 app.use(morgan('dev'));
+app.use(multer({dest: path.join(__dirname, 'public/img/subidas')}).single('imagen'))
 
 
 // Global Variables
@@ -54,6 +56,7 @@ app.use((req, res, next) => {
 // Rutas 
 app.use(require('./rutas/index.ruta')); // Las rutas se manejaran en archivos a parte
 app.use(require('./rutas/usuario.ruta'));
+app.use(require('./rutas/libro.ruta'));
 
 // CSS e IMAGENES
 app.use(express.static(path.join(__dirname, "public")));   
