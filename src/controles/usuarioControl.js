@@ -56,5 +56,4 @@ usuarioCtrl.cerrarSesion = (req, res) => {
     req.redirect('/usuarios/iniciar');
 }
 
-
 module.exports = usuarioCtrl;

@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-
 require('./database'); // Se exportan los datos de la base de datos
 const app = require('./server') // Se exportan las funciones de server donde se hacen las rutas
 
