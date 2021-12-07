@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const morgan = require('morgan');
 const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 const { dirname } = require('path');
 
 //Inicializacion
@@ -41,7 +42,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash())
 app.use(morgan('dev'));
-app.use(multer({dest: path.join(__dirname, 'public/img/subidas')}).single('imagen'))
+const almacenamiento = multer.diskStorage({
+    destination : path.join(__dirname, 'public/img/subidas'),
+    filename : (req, file, cb, filename) => {
+        cb(null, uuidv4() + path.extname(file.originalname))
+    }
+});
+app.use(multer({ storage : almacenamiento }).single('imagen'))
 
 
 // Global Variables
