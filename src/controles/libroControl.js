@@ -5,12 +5,12 @@ libroCtrl.renderAgregarLibro = (req, res) => {
     res.render('libros/nuevoLibro')
 }
 libroCtrl.agregarLibro = async (req, res) => { 
-    const { titulo, descripcion } = req.body;
+    const { titulo, autor } = req.body;
     const { filename, originalname, mimetype, size} = req.file;
     const usuario = req.user.id;
     const libro = new Libro({
         titulo,
-        descripcion,
+        autor,
         filename,
         path : 'img/subidas/' + filename,
         originalname,

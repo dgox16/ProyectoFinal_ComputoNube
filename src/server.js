@@ -8,7 +8,9 @@ const passport = require('passport');
 const morgan = require('morgan');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
-const { format } = require('timeago.js');
+const timeago = require('timeago.js');
+
+
 
 //Inicializacion
 const app = express();
@@ -22,11 +24,12 @@ app.engine('.hbs', exphbs.engine({ // Se configura hbs que se usara como un html
     layoutsDir: path.join(app.get('views'), 'layouts'), // Ubicacion donde estara la base de todas las paginas
     partialsDir: path.join(app.get('views'), 'partials'), // Partes de html para reusar
     extname: '.hbs',
+    helpers: require('./auxiliar/handlebars'),
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true,
     }
-}));
+})); 
 
 app.set('view engine', '.hbs'); // Se indica que se usara hbs
 
@@ -57,7 +60,7 @@ app.use((req, res, next) => {
     res.locals.mensajeError = req.flash('mensajeError');
     res.locals.error = req.flash('error');
     res.locals.user = req.user || null;
-    res.locals.format = format;
+    res.locals.timeago = timeago;
     next();
 });
 
