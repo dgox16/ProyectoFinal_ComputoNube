@@ -8,6 +8,7 @@ const libroEstrutura = new Schema({
     originalname : {type : String},
     mimetype : {type : String},
     size : {type : Number},
+    usuario : {type : String, required: true},
     creandoEl : {type : Date, default: Date.now()}
 });
 

@@ -56,7 +56,7 @@ app.use((req, res, next) => {
     res.locals.mensajeExito = req.flash('mensajeExito');
     res.locals.mensajeError = req.flash('mensajeError');
     res.locals.error = req.flash('error');
-    res.locals.usuario = req.usuario || null;
+    res.locals.user = req.user || null;
     res.locals.format = format;
     next();
 });

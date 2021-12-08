@@ -7,6 +7,7 @@ libroCtrl.renderAgregarLibro = (req, res) => {
 libroCtrl.agregarLibro = async (req, res) => { 
     const { titulo, descripcion } = req.body;
     const { filename, originalname, mimetype, size} = req.file;
+    const usuario = req.user.id;
     const libro = new Libro({
         titulo,
         descripcion,
@@ -14,14 +15,17 @@ libroCtrl.agregarLibro = async (req, res) => {
         path : 'img/subidas/' + filename,
         originalname,
         mimetype,
+        usuario,
         size
     });
+    
+
     await libro.save();
     res.redirect('/libro');
 }
 
 libroCtrl.listaLibros = async (req, res) => {
-    const libros = await Libro.find();
+    const libros = await Libro.find({usuario: req.user.id}).sort({creandoEl: -1});
     res.render('libros/todosLibros', { libros });
 }
 

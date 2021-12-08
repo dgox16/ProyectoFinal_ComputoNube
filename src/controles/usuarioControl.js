@@ -53,7 +53,7 @@ usuarioCtrl.iniciaSesion = passport.authenticate('local', {
 usuarioCtrl.cerrarSesion = (req, res) => {
     req.logout();
     req.flash('mensajeExito', 'Has cerrado sesión');
-    req.redirect('/usuarios/iniciar');
+    res.redirect('/usuarios/iniciar');
 }
 
 module.exports = usuarioCtrl;
