@@ -27,7 +27,11 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        {{#if user.esAdministrador}}
+                        <li><a class="dropdown-item" href="/usuarios/administrar">Administrar Usuarios</a></li>
+                        {{/if}}
                         <li><a class="dropdown-item" href="/usuarios/cerrarSesion">Cerrar Sesión</a></li>
+                        
                     </ul>
                 </li>
                 {{else}}

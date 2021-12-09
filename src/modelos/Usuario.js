@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs'); // Libreria para encriptar
 const usuarioEstructura = new Schema({  // Se crea la estructura basica de los usuarios
     nombre : {type : String, required : true},
     usuario : {type : String, required : true, unique:true},
-    contraseña : {type : String, required : true}
+    contraseña : {type : String, required : true},
+    esAdministrador : {type : Boolean, required : true}
 }, {
     timestamps : true // Hora de creacion
 });

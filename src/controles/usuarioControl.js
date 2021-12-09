@@ -29,7 +29,7 @@ usuarioCtrl.registro = async (req, res) => {
             req.flash('mensajeError', "El usuario ya está en uso");
             res.redirect('/usuarios/registro')
         } else {
-            const nuevoUsuario = new Usuario({nombre,usuario,contraseña});
+            const nuevoUsuario = new Usuario({nombre,usuario,contraseña, esAdministrador : false});
             nuevoUsuario.contraseña = await nuevoUsuario.encriptarContraseña(contraseña);
             await nuevoUsuario.save();
             req.flash('mensajeExito', 'Se ha registrado correctamente')
@@ -54,6 +54,17 @@ usuarioCtrl.cerrarSesion = (req, res) => {
     req.logout();
     req.flash('mensajeExito', 'Has cerrado sesión');
     res.redirect('/usuarios/iniciar');
+}
+
+usuarioCtrl.renderAdministrar = async(req, res) => {
+    const usuario = await Usuario.find({esAdministrador : false }).sort({createdAt : -1});
+    res.render('usuarios/administrar', { usuario })
+}
+
+usuarioCtrl.eliminarUsuario = async (req, res) => {
+    await Usuario.findByIdAndDelete(req.params.id);
+    req.flash('mensajeExito', 'Has eliminado al usuario');
+    res.redirect('/usuarios/administrar');
 }
 
 module.exports = usuarioCtrl;

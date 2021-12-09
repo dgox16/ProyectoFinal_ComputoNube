@@ -11,7 +11,6 @@ const { v4: uuidv4 } = require('uuid');
 const timeago = require('timeago.js');
 
 
-
 //Inicializacion
 const app = express();
 require('./configuraciones/passport');
@@ -35,7 +34,7 @@ app.set('view engine', '.hbs'); // Se indica que se usara hbs
 
 // Middlewars
 app.use(express.urlencoded({extended : false}));
-app.use(methodOverride('__method'));
+app.use(methodOverride('_method'));
 app.use(session({
     secret: 'secreto',
     resave: true,

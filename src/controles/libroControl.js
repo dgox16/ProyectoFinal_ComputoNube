@@ -25,7 +25,7 @@ libroCtrl.agregarLibro = async (req, res) => {
 }
 
 libroCtrl.listaLibros = async (req, res) => {
-    const libros = await Libro.find({usuario: req.user.id}).sort({creandoEl: -1});
+    const libros = await Libro.find({usuario: req.user.id}).sort({createdAt : -1});
     res.render('libros/todosLibros', { libros });
 }
 
