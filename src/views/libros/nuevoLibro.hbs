@@ -18,9 +18,9 @@
                         <div class="select-editable">
                             <select class="form-select" onchange="this.nextElementSibling.value=this.value">
                                 <option value=""></option>
-                                <option value="Camus">Camus</option>
-                                <option value="Kafka">Kafka</option>
-                                <option value="Proust">Marcel Proust</option>
+                                {{#each autores}}
+                                <option value="{{nombre}}">{{nombre}}</option>
+                                {{/each}}
                             </select>
                             <input type="text" class="form-control" name="autor" value="" />
                         </div>
