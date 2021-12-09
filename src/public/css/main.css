@@ -89,3 +89,8 @@ body {
     border: none;
     margin-left: 5px;
 }
+.card-img-top {
+    width: 100%;
+    height: 21vw;
+    object-fit: cover;
+}

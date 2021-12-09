@@ -7,7 +7,7 @@ libroCtrl.renderAgregarLibro = async (req, res) => {
     res.render('libros/nuevoLibro', { autores });
 }
 libroCtrl.agregarLibro = async (req, res) => {
-    const { titulo, autor } = req.body;
+    const { titulo, autor, añoLectura, calificacion } = req.body;
     const { filename } = req.file;
     const usuario = req.user.id;
     const auxAutor = await Autor.findOne({ nombre : autor });
@@ -17,7 +17,9 @@ libroCtrl.agregarLibro = async (req, res) => {
             autor: auxAutor.nombre,
             filename,
             path: 'img/portadas/' + filename,
-            usuario
+            usuario,
+            añoLectura,
+            calificacion
         });
         await libro.save();
         res.redirect('/libro');
@@ -32,7 +34,9 @@ libroCtrl.agregarLibro = async (req, res) => {
             autor: autorLibro.nombre,
             filename,
             path: 'img/portadas/' + filename,
-            usuario
+            usuario,
+            añoLectura,
+            calificacion
         });
         await libro.save();
         res.redirect('/libro');

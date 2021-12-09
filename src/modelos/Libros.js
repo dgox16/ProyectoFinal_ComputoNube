@@ -6,6 +6,8 @@ const libroEstrutura = new Schema({
     filename: { type: String },
     path: { type: String },
     usuario: { type: String, required: true },
+    calificacion: { type: Number},
+    añoLectura: { type: Number}
 }, {
     timestamps: true
 });
