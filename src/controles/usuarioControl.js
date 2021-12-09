@@ -1,6 +1,7 @@
 const usuarioCtrl = {};
 const passport = require('passport');
 const Usuario = require('../modelos/Usuario');
+const Libro = require('../modelos/Libros');
 
 // SECCION REGISTRO
 usuarioCtrl.renderFormRegistro = (req, res) => {
@@ -63,6 +64,7 @@ usuarioCtrl.renderAdministrar = async(req, res) => {
 
 usuarioCtrl.eliminarUsuario = async (req, res) => {
     await Usuario.findByIdAndDelete(req.params.id);
+    await Libro.deleteMany({usuario: req.params.id});
     req.flash('mensajeExito', 'Has eliminado al usuario');
     res.redirect('/usuarios/administrar');
 }
