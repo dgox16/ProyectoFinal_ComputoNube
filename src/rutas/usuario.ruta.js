@@ -12,6 +12,8 @@ const { renderFormRegistro,
         editarUsuario
       } = require('../controles/usuarioControl');
 
+const { estaAutenticado, esAdmin } = require('../auxiliar/validacionSesion');
+
 router.get('/usuarios/registro', renderFormRegistro);
 router.post('/usuarios/registro', registro);
 
@@ -20,12 +22,12 @@ router.post('/usuarios/iniciar', iniciaSesion);
 
 router.get('/usuarios/cerrarSesion', cerrarSesion);
 
-router.get('/usuarios/administrar', renderAdministrar);
+router.get('/usuarios/administrar', estaAutenticado, esAdmin, renderAdministrar);
 
-router.delete('/usuarios/eliminar/:id', eliminarUsuario);
+router.delete('/usuarios/eliminar/:id', estaAutenticado, esAdmin, eliminarUsuario);
 
-router.get('/usuarios/editar/:id', renderEditarUsuario);
+router.get('/usuarios/editar/:id', estaAutenticado, esAdmin, renderEditarUsuario);
 
-router.put('/usuarios/editar/:id', editarUsuario)
+router.put('/usuarios/editar/:id', estaAutenticado, esAdmin, editarUsuario)
 
 module.exports = router;
