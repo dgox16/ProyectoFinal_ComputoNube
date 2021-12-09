@@ -67,4 +67,19 @@ usuarioCtrl.eliminarUsuario = async (req, res) => {
     res.redirect('/usuarios/administrar');
 }
 
+usuarioCtrl.renderEditarUsuario =  async (req, res) => {
+    const usuario = await Usuario.findById(req.params.id);
+    res.render('usuarios/editar', {usuario});
+}
+
+usuarioCtrl.editarUsuario = async (req, res) => {
+    const { nombre, usuario, esAdministrador } = req.body;
+    if (esAdministrador) {
+        await Usuario.findByIdAndUpdate(req.params.id, {nombre, usuario, esAdministrador});
+    } else {
+        await Usuario.findByIdAndUpdate(req.params.id, {nombre, usuario});
+    }
+    res.redirect('/usuarios/administrar');
+}
+
 module.exports = usuarioCtrl;

@@ -7,7 +7,9 @@ const { renderFormRegistro,
         iniciaSesion, 
         cerrarSesion, 
         renderAdministrar,
-        eliminarUsuario
+        eliminarUsuario,
+        renderEditarUsuario,
+        editarUsuario
       } = require('../controles/usuarioControl');
 
 router.get('/usuarios/registro', renderFormRegistro);
@@ -20,6 +22,10 @@ router.get('/usuarios/cerrarSesion', cerrarSesion);
 
 router.get('/usuarios/administrar', renderAdministrar);
 
-router.delete('/usuarios/eliminar/:id', eliminarUsuario)
+router.delete('/usuarios/eliminar/:id', eliminarUsuario);
+
+router.get('/usuarios/editar/:id', renderEditarUsuario);
+
+router.put('/usuarios/editar/:id', editarUsuario)
 
 module.exports = router;

@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header text-center">
+                <h1>Editar usuario</h1>
+            </div>
+            <div class="card-body">
+                <form action="/usuarios/editar/{{usuario.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="form-group p-1">
+                        <input type="text" class="form-control" name="nombre" value="{{usuario.nombre}}">
+                    </div>
+                    <div class="form-group p-1">
+                        <input type="text" class="form-control" name="usuario" value="{{usuario.usuario}}">
+                    </div>
+                    <div class="form-group p-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="esAdministrador">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Convertir en administrador
+                            </label>
+                          </div>
+                    </div>
+                    <button class="btn btn-warning col-12 p-2" type="submit">
+                        Editar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
