@@ -4,7 +4,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color:  #eceff4;
+    color: #eceff4;
 }
 
 .navbar-custom .navbar-brand,
@@ -14,7 +14,7 @@ body {
 }
 
 .card {
-    color : #eceff4;
+    color: #eceff4;
     background-color: #3b4252;
 }
 
@@ -23,6 +23,7 @@ body {
     border-color: #81a1c1;
     color: #2e3440;
 }
+
 .btn-success:hover {
     background-color: #88c0d0;
     border-color: #88c0d0;
@@ -40,8 +41,51 @@ body {
     color: #4c566a;
     border: #d8dee9;
 }
+
 .form-control:focus {
     background-color: #d8dee9;
     color: #4c566a;
     border: #d8dee9;
+}
+
+.form-select {
+    background-color: #d8dee9;
+    color: #4c566a;
+    border: #d8dee9;
+}
+
+.form-select:focus {
+    background-color: #d8dee9;
+    color: #4c566a;
+    border: #d8dee9;
+}
+
+.select-editable {
+    position: relative;
+    background-color: #d8dee9;
+    border: solid grey 1px;
+    height: 30px;
+    margin-bottom: 2rem;
+}
+
+.select-editable select {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 14px;
+    border: none;
+
+    margin: 0;
+}
+
+.select-editable input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 33px;
+    width: 320px;
+    padding: 1px;
+    font-size: 1rem;
+    border: none;
+    margin-left: 5px;
 }

@@ -5,9 +5,6 @@ const libroEstrutura = new Schema({
     autor : {type : String},
     filename : {type : String},
     path : {type : String},
-    originalname : {type : String},
-    mimetype : {type : String},
-    size : {type : Number},
     usuario : {type : String, required: true},
 }, {
     timestamps: true
