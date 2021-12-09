@@ -4,25 +4,25 @@ const Libro = require('../modelos/Libros');
 libroCtrl.renderAgregarLibro = (req, res) => {
     res.render('libros/nuevoLibro')
 }
-libroCtrl.agregarLibro = async (req, res) => { 
+libroCtrl.agregarLibro = async (req, res) => {
     const { titulo, autor } = req.body;
-    const { filename} = req.file;
+    const { filename } = req.file;
     const usuario = req.user.id;
     const libro = new Libro({
         titulo,
         autor,
         filename,
-        path : 'img/portadas/' + filename,
+        path: 'img/portadas/' + filename,
         usuario
     });
-    
+
 
     await libro.save();
     res.redirect('/libro');
 }
 
 libroCtrl.listaLibros = async (req, res) => {
-    const libros = await Libro.find({usuario: req.user.id}).sort({createdAt : -1});
+    const libros = await Libro.find({ usuario: req.user.id }).sort({ createdAt: -1 });
     res.render('libros/todosLibros', { libros });
 }
 

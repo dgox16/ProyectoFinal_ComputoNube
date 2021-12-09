@@ -13,10 +13,10 @@ usuarioCtrl.registro = async (req, res) => {
     const errores = [];
     const { nombre, usuario, contraseña, confirmarContraseña } = req.body;
     if (contraseña != confirmarContraseña) {
-        errores.push({text: 'Las contraseñas no coinciden'});
+        errores.push({ text: 'Las contraseñas no coinciden' });
     };
     if (contraseña.length < 4) {
-        errores.push({text: 'La contraseña debe tener al menos 4 caracteres'});
+        errores.push({ text: 'La contraseña debe tener al menos 4 caracteres' });
     };
     if (errores.length > 0) {
         res.render('usuarios/registro', {
@@ -25,12 +25,12 @@ usuarioCtrl.registro = async (req, res) => {
             usuario
         });
     } else {
-        const usuarioID = await Usuario.findOne({usuario:usuario});
+        const usuarioID = await Usuario.findOne({ usuario: usuario });
         if (usuarioID) {
             req.flash('mensajeError', "El usuario ya está en uso");
             res.redirect('/usuarios/registro')
         } else {
-            const nuevoUsuario = new Usuario({nombre,usuario,contraseña, esAdministrador : false});
+            const nuevoUsuario = new Usuario({ nombre, usuario, contraseña, esAdministrador: false });
             nuevoUsuario.contraseña = await nuevoUsuario.encriptarContraseña(contraseña);
             await nuevoUsuario.save();
             req.flash('mensajeExito', 'Se ha registrado correctamente')
@@ -45,9 +45,9 @@ usuarioCtrl.renderFormInicio = (req, res) => {
 }
 
 usuarioCtrl.iniciaSesion = passport.authenticate('local', {
-    failureRedirect : '/usuarios/registro',
-    successRedirect : '/libro',
-    failureFlash : true
+    failureRedirect: '/usuarios/registro',
+    successRedirect: '/libro',
+    failureFlash: true
 });
 
 //SECCION CERRAR SESION
@@ -57,29 +57,29 @@ usuarioCtrl.cerrarSesion = (req, res) => {
     res.redirect('/usuarios/iniciar');
 }
 
-usuarioCtrl.renderAdministrar = async(req, res) => {
-    const usuario = await Usuario.find({esAdministrador : false }).sort({createdAt : -1});
+usuarioCtrl.renderAdministrar = async (req, res) => {
+    const usuario = await Usuario.find({ esAdministrador: false }).sort({ createdAt: -1 });
     res.render('usuarios/administrar', { usuario })
 }
 
 usuarioCtrl.eliminarUsuario = async (req, res) => {
     await Usuario.findByIdAndDelete(req.params.id);
-    await Libro.deleteMany({usuario: req.params.id});
+    await Libro.deleteMany({ usuario: req.params.id });
     req.flash('mensajeExito', 'Has eliminado al usuario');
     res.redirect('/usuarios/administrar');
 }
 
-usuarioCtrl.renderEditarUsuario =  async (req, res) => {
+usuarioCtrl.renderEditarUsuario = async (req, res) => {
     const usuario = await Usuario.findById(req.params.id);
-    res.render('usuarios/editar', {usuario});
+    res.render('usuarios/editar', { usuario });
 }
 
 usuarioCtrl.editarUsuario = async (req, res) => {
     const { nombre, usuario, esAdministrador } = req.body;
     if (esAdministrador) {
-        await Usuario.findByIdAndUpdate(req.params.id, {nombre, usuario, esAdministrador});
+        await Usuario.findByIdAndUpdate(req.params.id, { nombre, usuario, esAdministrador });
     } else {
-        await Usuario.findByIdAndUpdate(req.params.id, {nombre, usuario});
+        await Usuario.findByIdAndUpdate(req.params.id, { nombre, usuario });
     }
     res.redirect('/usuarios/administrar');
 }

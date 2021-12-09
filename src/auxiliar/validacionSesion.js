@@ -1,7 +1,7 @@
 const auxiliar = {};
 
 auxiliar.estaAutenticado = (req, res, next) => {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         return next();
     }
     req.flash('mensajeError', 'No has iniciado sesion')
@@ -9,7 +9,7 @@ auxiliar.estaAutenticado = (req, res, next) => {
 }
 
 auxiliar.esAdmin = (req, res, next) => {
-    if(req.user.esAdministrador) {
+    if (req.user.esAdministrador) {
         return next();
     }
     req.flash('mensajeError', 'No esta autorizado')

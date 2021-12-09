@@ -15,9 +15,10 @@ const timeago = require('timeago.js');
 const app = express();
 require('./configuraciones/passport');
 
+
 // Ajustes
 app.set('puerto', process.env.PORT || 3000); // Se define el puerto a usar
-app.set('views', path.join(__dirname,"views")); // Se indican donde estan las vistas a mostrar con join
+app.set('views', path.join(__dirname, "views")); // Se indican donde estan las vistas a mostrar con join
 app.engine('.hbs', exphbs.engine({ // Se configura hbs que se usara como un html programable
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'), // Ubicacion donde estara la base de todas las paginas
@@ -28,12 +29,13 @@ app.engine('.hbs', exphbs.engine({ // Se configura hbs que se usara como un html
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true,
     }
-})); 
+}));
 
 app.set('view engine', '.hbs'); // Se indica que se usara hbs
 
+
 // Middlewars
-app.use(express.urlencoded({extended : false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(session({
     secret: 'secreto',
@@ -45,12 +47,12 @@ app.use(passport.session());
 app.use(flash())
 app.use(morgan('dev'));
 const almacenamiento = multer.diskStorage({
-    destination : path.join(__dirname, 'public/img/portadas'),
-    filename : (req, file, cb, filename) => {
+    destination: path.join(__dirname, 'public/img/portadas'),
+    filename: (req, file, cb, filename) => {
         cb(null, uuidv4() + path.extname(file.originalname))
     }
 });
-app.use(multer({ storage : almacenamiento }).single('imagen'))
+app.use(multer({ storage: almacenamiento }).single('imagen'))
 
 
 // Global Variables
@@ -70,6 +72,6 @@ app.use(require('./rutas/usuario.ruta'));
 app.use(require('./rutas/libro.ruta'));
 
 // CSS e IMAGENES
-app.use(express.static(path.join(__dirname, "public")));   
+app.use(express.static(path.join(__dirname, "public")));
 
 module.exports = app
