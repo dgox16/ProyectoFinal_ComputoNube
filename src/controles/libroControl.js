@@ -48,4 +48,20 @@ libroCtrl.listaLibros = async (req, res) => {
     res.render('libros/todosLibros', { libros });
 }
 
+libroCtrl.renderVistaLibro = async (req, res) => {
+    const libro = await Libro.findById(req.params.id);
+    res.render('libros/vista', { libro });
+}
+
+libroCtrl.eliminarLibro = async (req, res) => {
+    await Libro.findByIdAndDelete(req.params.id);
+    req.flash('mensajeExito', 'Has eliminado el libro');
+    res.redirect('/libro');
+}
+
+libroCtrl.renderEditarLibro = async (req, res) => {
+    const libro = await Libro.findById(req.params.id); 
+    res.render('libros/editar/:id', {libro})
+}
+
 module.exports = libroCtrl;

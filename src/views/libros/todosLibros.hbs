@@ -3,9 +3,16 @@
     <div class="col-md-3">
         <div class="card">
             <img src={{path}} class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ titulo }}</h5>
-                <p class="card-text">{{ autor }}</p>
+            <div class="card-body">           
+                <a href="/libro/{{id}}" class="text-light">
+                    <h5 class="card-title text-uppercase">
+                        {{titulo}}
+                    </h5>
+                </a>
+                <a href="#" class="text-light " >
+                    <p class="card-text">{{ autor }}</p>
+                </a>
+                
             </div>
             <div class="card-footer">
                 <p class="card-text">{{ timeago createdAt }} </p>

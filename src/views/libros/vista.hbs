@@ -1,0 +1,34 @@
+<div class="row bgVista">
+    <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img width="160px" class="rounded" src="../img/portadas/{{libro.filename}}">
+        </div>
+    </div>
+    <div class="col-md-6 border-right">
+        <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="text-right">{{libro.titulo}}</h1>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12"><label class="labels"><h1 class="text-right display-6">{{libro.autor}}</h1></label></div>
+                <div class="col-md-12"><label class="labels"><h1 class="text-right display-6">Año de Creación: {{libro.añoLectura}}</h1></label></div>
+                <div class="col-md-12"><label class="labels"><h1 class="text-right display-6">Rating: {{libro.calificacion}}/5</h1></label></div>
+ 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="p-3 py-5">
+            <a class="btn btn-secondary btn-lg col-12 mt-3 mb-3" href="/usuarios/editar/{{id}}">
+                Ver autor
+            </a>
+            <a class="btn btn-warning btn-lg col-12 mt-3 mb-3" href="/usuarios/editar/{{id}}">
+                Editar
+            </a>
+            <form action="/libro/eliminar/{{libro.id}}?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger btn-lg col-12 mt-3 mb-3">Eliminar</button>
+            </form>
+        </div>
+    </div>
+</div>
