@@ -30,7 +30,6 @@ app.engine('.hbs', exphbs.engine({ // Se configura hbs que se usara como un html
         allowProtoMethodsByDefault: true,
     }
 }));
-
 app.set('view engine', '.hbs'); // Se indica que se usara hbs
 
 

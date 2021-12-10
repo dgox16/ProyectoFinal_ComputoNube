@@ -39,6 +39,7 @@ usuarioCtrl.registro = async (req, res) => {
     }
 }
 
+
 //SECCION INICIO SESION
 usuarioCtrl.renderFormInicio = (req, res) => {
     res.render('usuarios/iniciar');
@@ -50,6 +51,7 @@ usuarioCtrl.iniciaSesion = passport.authenticate('local', {
     failureFlash: true
 });
 
+
 //SECCION CERRAR SESION
 usuarioCtrl.cerrarSesion = (req, res) => {
     req.logout();
@@ -57,11 +59,15 @@ usuarioCtrl.cerrarSesion = (req, res) => {
     res.redirect('/usuarios/iniciar');
 }
 
+
+// ADMINISTRAR 
 usuarioCtrl.renderAdministrar = async (req, res) => {
     const usuario = await Usuario.find({ esAdministrador: false }).sort({ createdAt: -1 });
     res.render('usuarios/administrar', { usuario })
 }
 
+
+// ELIMINAR USUARIO
 usuarioCtrl.eliminarUsuario = async (req, res) => {
     await Usuario.findByIdAndDelete(req.params.id);
     await Libro.deleteMany({ usuario: req.params.id });
@@ -69,6 +75,8 @@ usuarioCtrl.eliminarUsuario = async (req, res) => {
     res.redirect('/usuarios/administrar');
 }
 
+
+// EDITAR USUARIO
 usuarioCtrl.renderEditarUsuario = async (req, res) => {
     const usuario = await Usuario.findById(req.params.id);
     res.render('usuarios/editar', { usuario });
@@ -83,5 +91,6 @@ usuarioCtrl.editarUsuario = async (req, res) => {
     }
     res.redirect('/usuarios/administrar');
 }
+
 
 module.exports = usuarioCtrl;

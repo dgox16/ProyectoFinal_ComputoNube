@@ -2,15 +2,17 @@ const libroCtrl = {};
 const Libro = require('../modelos/Libros');
 const Autor = require('../modelos/Autores');
 
+// AGREGAR LIBRO
 libroCtrl.renderAgregarLibro = async (req, res) => {
     const autores = await Autor.find();
     res.render('libros/nuevoLibro', { autores });
-}
+};
+
 libroCtrl.agregarLibro = async (req, res) => {
     const { titulo, autor, añoLectura, calificacion } = req.body;
     const { filename } = req.file;
     const usuario = req.user.id;
-    const auxAutor = await Autor.findOne({ nombre : autor });
+    const auxAutor = await Autor.findOne({ nombre: autor });
     if (auxAutor) {
         const libro = new Libro({
             titulo,
@@ -25,10 +27,10 @@ libroCtrl.agregarLibro = async (req, res) => {
         res.redirect('/libro');
     } else {
         const autorBD = new Autor({
-            nombre : autor
+            nombre: autor
         });
-        await autorBD.save();
-        const autorLibro = await Autor.findOne({nombre: autor})
+        await autorBD.save(); // CREAR AUTOR
+        const autorLibro = await Autor.findOne({ nombre: autor })
         const libro = new Libro({
             titulo,
             autor: autorLibro.nombre,
@@ -40,19 +42,23 @@ libroCtrl.agregarLibro = async (req, res) => {
         });
         await libro.save();
         res.redirect('/libro');
-    }    
-}
+    }
+};
 
+
+// VER LIBROS
 libroCtrl.listaLibros = async (req, res) => {
     const libros = await Libro.find({ usuario: req.user.id }).sort({ createdAt: -1 });
     res.render('libros/todosLibros', { libros });
-}
+};
 
 libroCtrl.renderVistaLibro = async (req, res) => {
     const libro = await Libro.findById(req.params.id);
     res.render('libros/vista', { libro });
-}
+};
 
+
+// ELIMINAR Y EDITAR LIBRO
 libroCtrl.eliminarLibro = async (req, res) => {
     await Libro.findByIdAndDelete(req.params.id);
     req.flash('mensajeExito', 'Has eliminado el libro');
@@ -61,15 +67,15 @@ libroCtrl.eliminarLibro = async (req, res) => {
 
 libroCtrl.renderEditarLibro = async (req, res) => {
     const autores = await Autor.find();
-    const libro = await Libro.findById(req.params.id); 
-    res.render('libros/editar', {libro, autores})
+    const libro = await Libro.findById(req.params.id);
+    res.render('libros/editar', { libro, autores })
 }
 
 libroCtrl.editarLibro = async (req, res) => {
     const { titulo, autor, añoLectura, calificacion } = req.body;
     const { filename } = req.file;
     const usuario = req.user.id;
-    const auxAutor = await Autor.findOne({ nombre : autor });
+    const auxAutor = await Autor.findOne({ nombre: autor });
     if (auxAutor) {
         await Libro.findByIdAndUpdate(req.params.id, {
             titulo,
@@ -83,10 +89,10 @@ libroCtrl.editarLibro = async (req, res) => {
         res.redirect('/libro');
     } else {
         const autorBD = new Autor({
-            nombre : autor
+            nombre: autor
         });
         await autorBD.save();
-        const autorLibro = await Autor.findOne({nombre: autor})
+        const autorLibro = await Autor.findOne({ nombre: autor })
         await Libro.findByIdAndUpdate(req.params.id, {
             titulo,
             autor: autorLibro.nombre,

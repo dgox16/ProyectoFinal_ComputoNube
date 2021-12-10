@@ -1,7 +1,5 @@
 const mongoose = require('mongoose'); // Se utilizara el modulo de mongoose para la conexion con la DB
-
 const { MONGODB_HOST, MONGODB_BASEDATOS } = process.env;
-
 const MONGODB = `mongodb://${MONGODB_HOST}/${MONGODB_BASEDATOS}`; // Se indica con que base de datos se va a conectar
 
 mongoose.connect(MONGODB, {
