@@ -46,12 +46,13 @@ app.use(passport.session());
 app.use(flash())
 app.use(morgan('dev'));
 const almacenamiento = multer.diskStorage({
-    destination: path.join(__dirname, 'public/img/portadas'),
+    destination: path.join(__dirname, 'public/img/subidas'),
     filename: (req, file, cb, filename) => {
         cb(null, uuidv4() + path.extname(file.originalname))
     }
 });
 app.use(multer({ storage: almacenamiento }).single('imagen'))
+
 
 
 // Global Variables

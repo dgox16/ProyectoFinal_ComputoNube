@@ -9,8 +9,21 @@ autorCtrl.renderVistaAutores = async (req, res) => {
 autorCtrl.renderAdministrarAutor = async (req, res) => {
     const autor = await Autor.findById(req.params.id);
     const libros = await Libro.find({ autor: autor.nombre })
-    console.log(libros);
     res.render('autores/administrar', { autor, libros });
+}
+
+autorCtrl.administrarAutor = async (req, res) => {
+    const { añoNacimiento, Nacionalidad, frase} = req.body;
+    const { filename } = req.file;
+    await Autor.findByIdAndUpdate(req.params.id, {
+        añoNacimiento,
+        Nacionalidad,
+        frase,
+        filename,
+        path: 'img/subidas/' + filename
+    });
+
+    res.send('Editado correctamente')
 }
 
 

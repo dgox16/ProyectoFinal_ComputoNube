@@ -18,7 +18,7 @@ libroCtrl.agregarLibro = async (req, res) => {
             titulo,
             autor: auxAutor.nombre,
             filename,
-            path: 'img/portadas/' + filename,
+            path: 'img/subidas/' + filename,
             usuario,
             añoLectura,
             calificacion
@@ -35,7 +35,7 @@ libroCtrl.agregarLibro = async (req, res) => {
             titulo,
             autor: autorLibro.nombre,
             filename,
-            path: 'img/portadas/' + filename,
+            path: 'img/subidas/' + filename,
             usuario,
             añoLectura,
             calificacion
@@ -82,7 +82,7 @@ libroCtrl.editarLibro = async (req, res) => {
             titulo,
             autor: auxAutor.nombre,
             filename,
-            path: 'img/portadas/' + filename,
+            path: 'img/subidas/' + filename,
             usuario,
             añoLectura,
             calificacion
@@ -98,7 +98,7 @@ libroCtrl.editarLibro = async (req, res) => {
             titulo,
             autor: autorLibro.nombre,
             filename,
-            path: 'img/portadas/' + filename,
+            path: 'img/subidas/' + filename,
             usuario,
             añoLectura,
             calificacion

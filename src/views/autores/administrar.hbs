@@ -1,4 +1,72 @@
-<h3>{{autor.nombre}}</h3>
-{{#each libros}}
-<h5>{{titulo}}</h5>
-{{/each}}
+<div class="container rounded bgVista">
+    <div class="row">
+        <form class="col-md-8" action="/autores/administrar/{{autor.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="col-md-4 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        {{#if autor.filename}}
+                        <img class="rounded-circle mt-5" width="190px" src="../../img/subidas/{{autor.filename}}">
+                        {{else}}
+                        <img class="rounded-circle mt-5" width="190px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                        {{/if}}
+                        <label for="formFileSm" class="form-label">Foto de {{autor.nombre}}</label>
+                        <input class="form-control form-control-sm" name="imagen" type="file">
+                    </div>
+                </div>
+                <div class="col-md-8 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="text-right">Datos del Perfil</h2>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <h3 class="text-right">{{autor.nombre}}</h3>
+                            </div>
+                            <br>
+                            <div class="col-md-12">
+                                <label class="labels">Año de Nacimiento:</label>
+                                <input type="text" class="form-control" placeholder="¿Qué año nacio {{autor.nombre}}?"
+                                    value="{{autor.añoNacimiento}}" name="añoNacimiento">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Nacionalidad:</label>
+                                <input type="text" class="form-control" placeholder="¿Donde nacio?"
+                                    value="{{autor.Nacionalidad}}" name="Nacionalidad">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Mejor frase:</label>
+                                <textarea name="frase" rows="4" class="form-control">{{autor.frase}}</textarea>
+                            </div>
+                            <div class=" mt-5 text-center">
+                                <button class="btn btn-secondary" type="submit">Editar Perfil</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </form>
+
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4>Libros Escritos</h4>
+                    <a href="/libro/agregar" class="btn btn-outline-light btn-sm">
+                        <i class="fa fa-plus"></i>&nbsp;Libro</span>
+                    </a>
+                </div><br>
+                <div class="list-group">
+                    {{#each libros}}
+                    <a href="/libro/{{id}}" class="list-group-item list-group-item-action">{{titulo}}</a>
+                    {{/each}}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
