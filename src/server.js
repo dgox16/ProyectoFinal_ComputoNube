@@ -69,6 +69,7 @@ app.use((req, res, next) => {
 app.use(require('./rutas/index.ruta')); // Las rutas se manejaran en archivos a parte
 app.use(require('./rutas/usuario.ruta'));
 app.use(require('./rutas/libro.ruta'));
+app.use(require('./rutas/autor.ruta'));
 
 // CSS e IMAGENES
 app.use(express.static(path.join(__dirname, "public")));
