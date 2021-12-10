@@ -13,16 +13,19 @@ autorCtrl.renderAdministrarAutor = async (req, res) => {
 }
 
 autorCtrl.administrarAutor = async (req, res) => {
-    const { añoNacimiento, Nacionalidad, frase} = req.body;
+    const autorAux = await Autor.findById(req.params.id);
+    const { nombre, añoNacimiento, Nacionalidad, frase} = req.body;
     const { filename } = req.file;
+    await Libro.updateMany({autor: autorAux.nombre}, {autor: nombre})
     await Autor.findByIdAndUpdate(req.params.id, {
+        nombre,
         añoNacimiento,
         Nacionalidad,
         frase,
         filename,
         path: 'img/subidas/' + filename
     });
-
+    
     res.send('Editado correctamente')
 }
 
