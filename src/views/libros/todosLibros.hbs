@@ -2,17 +2,16 @@
     {{#each libros}}
     <div class="col-md-3">
         <div class="card">
-            <img src={{path}} class="card-img-top">
+            <a href="/libro/{{id}}">
+                <img src={{path}} class="card-img-top">
+            </a>
             <div class="card-body">           
                 <a href="/libro/{{id}}" class="text-light">
                     <h5 class="card-title text-uppercase">
                         {{titulo}}
                     </h5>
                 </a>
-                <a href="/autores" class="text-light " >
-                    <p class="card-text">{{ autor }}</p>
-                </a>
-                
+                <p class="card-text">{{ autor }}</p>
             </div>
             <div class="card-footer">
                 <p class="card-text">{{ timeago createdAt }} </p>

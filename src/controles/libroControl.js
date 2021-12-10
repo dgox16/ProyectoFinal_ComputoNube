@@ -54,7 +54,8 @@ libroCtrl.listaLibros = async (req, res) => {
 
 libroCtrl.renderVistaLibro = async (req, res) => {
     const libro = await Libro.findById(req.params.id);
-    res.render('libros/vista', { libro });
+    const autor = await Autor.findOne({nombre: libro.autor});
+    res.render('libros/vista', { libro, autor });
 };
 
 
