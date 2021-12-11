@@ -148,6 +148,23 @@ body {
     border: #d8dee9;
 }
 
+.drk:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0.6;
+    z-index: 1;
+  }
+  
+  .carousel-caption {
+    z-index: 2;
+  }
+
 .form-select:focus {
     background-color: #d8dee9;
     color: #4c566a;
@@ -188,6 +205,11 @@ body {
     height: 24vw;
     object-fit: cover;
 }
+
+.imgA {
+    height: 36vw;
+}
+
 a {
     text-decoration:none;
 }

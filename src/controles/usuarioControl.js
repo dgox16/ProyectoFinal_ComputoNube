@@ -71,7 +71,7 @@ usuarioCtrl.renderAdministrar = async (req, res) => {
 usuarioCtrl.eliminarUsuario = async (req, res) => {
     await Usuario.findByIdAndDelete(req.params.id);
     await Libro.deleteMany({ usuario: req.params.id });
-    req.flash('mensajeExito', 'Has eliminado al usuario');
+    req.flash('mensajeError', 'Has eliminado al usuario');
     res.redirect('/usuarios/administrar');
 }
 
@@ -89,6 +89,7 @@ usuarioCtrl.editarUsuario = async (req, res) => {
     } else {
         await Usuario.findByIdAndUpdate(req.params.id, { nombre, usuario });
     }
+    req.flash('mensajeExito', 'Has editado el usuario correctamente')
     res.redirect('/usuarios/administrar');
 }
 

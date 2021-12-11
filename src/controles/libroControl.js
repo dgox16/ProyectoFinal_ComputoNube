@@ -24,6 +24,7 @@ libroCtrl.agregarLibro = async (req, res) => {
             calificacion
         });
         await libro.save();
+        req.flash('mensajeExito', 'Has editado el libro correctamente')
         res.redirect('/libro');
     } else {
         const autorBD = new Autor({
@@ -41,6 +42,7 @@ libroCtrl.agregarLibro = async (req, res) => {
             calificacion
         });
         await libro.save();
+        req.flash('mensajeExito', 'Ha añadido el libro correctamente')
         res.redirect('/libro');
     }
 };
@@ -62,7 +64,7 @@ libroCtrl.renderVistaLibro = async (req, res) => {
 // ELIMINAR Y EDITAR LIBRO
 libroCtrl.eliminarLibro = async (req, res) => {
     await Libro.findByIdAndDelete(req.params.id);
-    req.flash('mensajeExito', 'Has eliminado el libro');
+    req.flash('mensajeError', 'Has eliminado el libro');
     res.redirect('/libro');
 }
 
@@ -88,6 +90,7 @@ libroCtrl.editarLibro = async (req, res) => {
                 añoLectura,
                 calificacion
             });
+            req.flash('mensajeExito', 'Has editado el libro correctamente')
             res.redirect('/libro');
         } else {
             const autorBD = new Autor({
@@ -104,6 +107,7 @@ libroCtrl.editarLibro = async (req, res) => {
                 añoLectura,
                 calificacion
             });
+            req.flash('mensajeExito', 'Has editado el libro correctamente')
             res.redirect('/libro');
         }
     } else {
@@ -115,6 +119,7 @@ libroCtrl.editarLibro = async (req, res) => {
                 añoLectura,
                 calificacion
             });
+            req.flash('mensajeExito', 'Has editado el libro correctamente')
             res.redirect('/libro');
         } else {
             const autorBD = new Autor({
@@ -129,6 +134,7 @@ libroCtrl.editarLibro = async (req, res) => {
                 añoLectura,
                 calificacion
             });
+            req.flash('mensajeExito', 'Has editado el libro correctamente')
             res.redirect('/libro');
         }
     }

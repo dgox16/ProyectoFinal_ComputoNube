@@ -34,7 +34,7 @@ autorCtrl.administrarAutor = async (req, res) => {
             frase,
         });
     }
-
+    req.flash('mensajeExito', 'Has editado el autor correctamente')
     res.redirect('/autores')
 }
 
