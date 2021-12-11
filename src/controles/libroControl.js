@@ -74,36 +74,63 @@ libroCtrl.renderEditarLibro = async (req, res) => {
 
 libroCtrl.editarLibro = async (req, res) => {
     const { titulo, autor, añoLectura, calificacion } = req.body;
-    const { filename } = req.file;
     const usuario = req.user.id;
     const auxAutor = await Autor.findOne({ nombre: autor });
-    if (auxAutor) {
-        await Libro.findByIdAndUpdate(req.params.id, {
-            titulo,
-            autor: auxAutor.nombre,
-            filename,
-            path: 'img/subidas/' + filename,
-            usuario,
-            añoLectura,
-            calificacion
-        });
-        res.redirect('/libro');
+    if (req.file) {
+        const { filename } = req.file;
+        if (auxAutor) {
+            await Libro.findByIdAndUpdate(req.params.id, {
+                titulo,
+                autor: auxAutor.nombre,
+                filename,
+                path: 'img/subidas/' + filename,
+                usuario,
+                añoLectura,
+                calificacion
+            });
+            res.redirect('/libro');
+        } else {
+            const autorBD = new Autor({
+                nombre: autor
+            });
+            await autorBD.save();
+            const autorLibro = await Autor.findOne({ nombre: autor })
+            await Libro.findByIdAndUpdate(req.params.id, {
+                titulo,
+                autor: autorLibro.nombre,
+                filename,
+                path: 'img/subidas/' + filename,
+                usuario,
+                añoLectura,
+                calificacion
+            });
+            res.redirect('/libro');
+        }
     } else {
-        const autorBD = new Autor({
-            nombre: autor
-        });
-        await autorBD.save();
-        const autorLibro = await Autor.findOne({ nombre: autor })
-        await Libro.findByIdAndUpdate(req.params.id, {
-            titulo,
-            autor: autorLibro.nombre,
-            filename,
-            path: 'img/subidas/' + filename,
-            usuario,
-            añoLectura,
-            calificacion
-        });
-        res.redirect('/libro');
+        if (auxAutor) {
+            await Libro.findByIdAndUpdate(req.params.id, {
+                titulo,
+                autor: auxAutor.nombre,
+                usuario,
+                añoLectura,
+                calificacion
+            });
+            res.redirect('/libro');
+        } else {
+            const autorBD = new Autor({
+                nombre: autor
+            });
+            await autorBD.save();
+            const autorLibro = await Autor.findOne({ nombre: autor })
+            await Libro.findByIdAndUpdate(req.params.id, {
+                titulo,
+                autor: autorLibro.nombre,
+                usuario,
+                añoLectura,
+                calificacion
+            });
+            res.redirect('/libro');
+        }
     }
 }
 
