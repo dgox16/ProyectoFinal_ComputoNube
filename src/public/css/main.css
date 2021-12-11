@@ -7,6 +7,10 @@ body {
     color: #eceff4;
 }
 
+.bg-footer {
+    background: #3b4252;
+}
+
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
     color: #eceff4;
@@ -105,6 +109,24 @@ body {
 .btn-secondary:focus {
     background-color: #b48ead;
     border-color: #b48ead;
+    color: #2e3440;
+}
+
+.btn-primary {
+    background-color: #8fbcbb;
+    border-color: #8fbcbb;
+    color: #2e3440;
+}
+
+.btn-primary:hover {
+    background-color: #b0d6d6;
+    border-color: #b0d6d6;
+    color: #2e3440;
+}
+
+.btn-primary:focus {
+    background-color: #8fbcbb;
+    border-color: #8fbcbb;
     color: #2e3440;
 }
 

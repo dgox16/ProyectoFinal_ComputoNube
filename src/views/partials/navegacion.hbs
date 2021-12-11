@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-custom navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Proyecto</a>
+        <a class="navbar-brand" href="#">
+            <img src="/img/logo.png" width="30" height="24" class="d-inline-block me-2 align-text-top rounded">
+            Books
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,30 +19,23 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 {{#if user}}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Opciones
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/libro">Libros</a></li>
-                        <li><a class="dropdown-item" href="/libro/agregar">Agregar libro</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        {{#if user.esAdministrador}}
-                        <li><a class="dropdown-item" href="/usuarios/administrar">Administrar Usuarios</a></li>
-                        {{/if}}
-                        <li><a class="dropdown-item" href="/usuarios/cerrarSesion">Cerrar Sesión</a></li>
-
-                    </ul>
+                <li class="nav-item">
+                    <a href="/libro/agregar" class="btn btn-success me-2">Agregar libro</a>
+                </li>
+                {{#if user.esAdministrador}}
+                <li class="nav-item">
+                    <a href="/usuarios/administrar" class="btn btn-primary me-2">Administrar usuario</a>
+                </li>
+                {{/if}}
+                <li class="nav-item">
+                    <a href="/usuarios/cerrarSesion" class="btn btn-danger">Cerrar Sesión</a>
                 </li>
                 {{else}}
                 <li class="nav-item">
-                    <a href="/usuarios/iniciar" class="nav-link">Inicio Sesión</a>
+                    <a href="/usuarios/iniciar" class="btn btn-success me-2">Inicio Sesión</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/usuarios/registro" class="nav-link">Registrarse</a>
+                    <a href="/usuarios/registro" class="btn btn-warning">Registrarse</a>
                 </li>
                 {{/if}}
             </ul>
